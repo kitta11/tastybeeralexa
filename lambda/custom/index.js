@@ -74,7 +74,7 @@ const InProgressRecommendationIntent = {
         && currentSlot.resolutions.resolutionsPerAuthority[0]) {
         if (currentSlot.resolutions.resolutionsPerAuthority[0].status.code === 'ER_SUCCESS_MATCH') {
           if (currentSlot.resolutions.resolutionsPerAuthority[0].values.length > 1) {
-            prompt = 'Which would you like';
+            prompt = 'What would you choose?';
             const size = currentSlot.resolutions.resolutionsPerAuthority[0].values.length;
 
             currentSlot.resolutions.resolutionsPerAuthority[0].values
