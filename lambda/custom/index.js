@@ -35,7 +35,7 @@ const LaunchRequestHandler = {
   },
   handle(handlerInput) {
     return handlerInput.responseBuilder
-      .speak('Welcome to our CraftBeer Decision Helper. I will recommend the best craftbeer for you. Do you want to get a recommendation or are you an alcoholic?')
+      .speak('Welcome to our CraftBeer Decision Helper. I will recommend the best craftbeer for you. Do you want me to recommend a beer or you dont prefer beer?')
       .reprompt('Do you want me to recommend a beer or you dont prefer beer?')
       .getResponse();
   },
@@ -50,7 +50,7 @@ const CouchPotatoIntent = {
   },
   handle(handlerInput) {
     return handlerInput.responseBuilder
-      .speak('You don\'t want to start your career? Have fun wasting away on the couch.')
+      .speak('Sorry to hear that, in that case we have to say good bye')
       .getResponse();
   },
 };
@@ -92,7 +92,7 @@ const InProgressRecommendationIntent = {
           }
         } else if (currentSlot.resolutions.resolutionsPerAuthority[0].status.code === 'ER_SUCCESS_NO_MATCH') {
           if (requiredSlots.indexOf(currentSlot.name) > -1) {
-            prompt = `What ${currentSlot.name} are you looking for`;
+            prompt = `What ${currentSlot.name} do you prefer`;
 
             return handlerInput.responseBuilder
               .speak(prompt)
@@ -148,8 +148,8 @@ const HelpHandler = {
   },
   handle(handlerInput) {
     return handlerInput.responseBuilder
-      .speak('This is Decision Tree. I can help you find the perfect job. You can say, recommend a job.')
-      .reprompt('Would you like a career or do you want to be a couch potato?')
+      .speak('This is CraftBeer Decision Helper. I can help you find the perfect craftbeer match. You can say, recommend a beer.')
+      .reprompt('Do you like beer?')
       .getResponse();
   },
 };
