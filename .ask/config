@@ -1,18 +1,39 @@
 {
   "deploy_settings": {
     "default": {
-      "skill_id": "",
+      "skill_id": "amzn1.ask.skill.633c0121-0997-4af2-9cce-8ce53f0ca0f9",
       "was_cloned": false,
       "merge": {
         "manifest": {
           "apis": {
             "custom": {
               "endpoint": {
-                "uri": "ask-custom-DecisionTree-default"
+                "uri": "ask-custom-decision-tree-default"
               }
             }
           }
         }
+      },
+      "resources": {
+        "manifest": {
+          "eTag": "fd9abc7f46898c2cd53147dcd65435bc"
+        },
+        "interactionModel": {
+          "en-US": {
+            "eTag": "4730dc937bfcb73b9ba6b3898264e54d"
+          }
+        },
+        "lambda": [
+          {
+            "arn": "arn:aws:lambda:us-east-1:307750239501:function:ask-custom-decision-tree-default",
+            "functionName": "arn:aws:lambda:us-east-1:307750239501:function:ask-custom-decision-tree-default",
+            "awsRegion": "us-east-1",
+            "alexaUsage": [
+              "custom/default"
+            ],
+            "revisionId": "39a978de-ffce-4dac-9693-6fc820d2c472"
+          }
+        ]
       }
     }
   }

@@ -14,7 +14,7 @@
             "job",
             "decision"
           ],
-          "name": "Decision Tree",
+          "name": "decision-tree",
           "description": "Ask Decision Tree for help choosing your ideal career.\n\nAlexa will provide an ideal career by asking a series of questions and giving you an answer.\n\nTo start, just say \"Alexa, launch Decision Tree\" or \"Alexa, open Decision Tree\" to get started\".\n\nAt any time, you can stop by saying \"Alexa, stop\""
         }
       },

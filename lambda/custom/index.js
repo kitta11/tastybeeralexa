@@ -35,8 +35,8 @@ const LaunchRequestHandler = {
   },
   handle(handlerInput) {
     return handlerInput.responseBuilder
-      .speak('Welcome to Decision Tree. I will recommend the best job for you. Do you want to start your career or be a couch potato?')
-      .reprompt('Do you want a career or to be a couch potato?')
+      .speak('Welcome to our CraftBeer Decision Helper. I will recommend the best craftbeer for you. Do you want to get a recommendation or are you an alcoholic?')
+      .reprompt('Do you want me to recommend a beer or you dont prefer beer?')
       .getResponse();
   },
 };
@@ -45,7 +45,7 @@ const CouchPotatoIntent = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
 
-    return request.type === 'IntentRequest' 
+    return request.type === 'IntentRequest'
       && request.intent.name === 'CouchPotatoIntent';
   },
   handle(handlerInput) {
@@ -70,8 +70,8 @@ const InProgressRecommendationIntent = {
     for (const slotName of Object.keys(handlerInput.requestEnvelope.request.intent.slots)) {
       const currentSlot = currentIntent.slots[slotName];
       if (currentSlot.confirmationStatus !== 'CONFIRMED'
-                && currentSlot.resolutions
-                && currentSlot.resolutions.resolutionsPerAuthority[0]) {
+        && currentSlot.resolutions
+        && currentSlot.resolutions.resolutionsPerAuthority[0]) {
         if (currentSlot.resolutions.resolutionsPerAuthority[0].status.code === 'ER_SUCCESS_MATCH') {
           if (currentSlot.resolutions.resolutionsPerAuthority[0].values.length > 1) {
             prompt = 'Which would you like';
@@ -123,15 +123,15 @@ const CompletedRecommendationIntent = {
 
     const slotValues = getSlotValues(filledSlots);
 
-    const key = `${slotValues.salaryImportance.resolved}-${slotValues.personality.resolved}-${slotValues.bloodTolerance.resolved}-${slotValues.preferredSpecies.resolved}`;
+    const key = `${slotValues.typeImportance.resolved}-${slotValues.bitterness.resolved}-${slotValues.glutenTolerance.resolved}-${slotValues.colorPreference.resolved}`;
     const occupation = options[slotsToOptionsMap[key]];
 
-    const speechOutput = `So you want to be ${slotValues.salaryImportance.resolved
-    }. You are an ${slotValues.personality.resolved
-    }, you like ${slotValues.preferredSpecies.resolved
-    }  and you ${slotValues.bloodTolerance.resolved === 'high' ? 'can' : "can't"
-    } tolerate blood ` +
-            `. You should consider being a ${occupation.name}`;
+    const speechOutput = `So your preferred type is ${slotValues.typeImportance.resolved
+      }. You like when the beer is ${slotValues.bitterness.resolved
+      }, you like ${slotValues.colorPreference.resolved
+      }  color and you are ${slotValues.glutenTolerance.resolved
+      } to gluten ` +
+      `. So I recommend you the ${occupation.name}`;
 
     return handlerInput.responseBuilder
       .speak(speechOutput)
@@ -143,7 +143,7 @@ const HelpHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
 
-    return request.type === 'IntentRequest' 
+    return request.type === 'IntentRequest'
       && request.intent.name === 'AMAZON.HelpIntent';
   },
   handle(handlerInput) {
@@ -200,61 +200,61 @@ const ErrorHandler = {
 const skillBuilder = Alexa.SkillBuilders.custom();
 
 const requiredSlots = [
-  'preferredSpecies',
-  'bloodTolerance',
-  'personality',
-  'salaryImportance',
+  'colorPreference',
+  'glutenTolerance',
+  'bitterness',
+  'typeImportance',
 ];
 
 const slotsToOptionsMap = {
-  'unimportant-introvert-low-animals': 20,
-  'unimportant-introvert-low-people': 8,
-  'unimportant-introvert-high-animals': 1,
-  'unimportant-introvert-high-people': 4,
-  'unimportant-extrovert-low-animals': 10,
-  'unimportant-extrovert-low-people': 3,
-  'unimportant-extrovert-high-animals': 11,
-  'unimportant-extrovert-high-people': 13,
-  'somewhat-introvert-low-animals': 20,
-  'somewhat-introvert-low-people': 6,
-  'somewhat-introvert-high-animals': 19,
-  'somewhat-introvert-high-people': 14,
-  'somewhat-extrovert-low-animals': 2,
-  'somewhat-extrovert-low-people': 12,
-  'somewhat-extrovert-high-animals': 17,
-  'somewhat-extrovert-high-people': 16,
-  'very-introvert-low-animals': 9,
-  'very-introvert-low-people': 15,
-  'very-introvert-high-animals': 17,
-  'very-introvert-high-people': 7,
-  'very-extrovert-low-animals': 17,
-  'very-extrovert-low-people': 0,
-  'very-extrovert-high-animals': 1,
-  'very-extrovert-high-people': 5,
+  'pilsen-mild-intolerant-pale': 20,
+  'pilsen-mild-intolerant-dark': 8,
+  'pilsen-mild-tolerant-pale': 1,
+  'pilsen-mild-tolerant-dark': 4,
+  'pilsen-bitter-intolerant-pale': 10,
+  'pilsen-bitter-intolerant-dark': 3,
+  'pilsen-bitter-tolerant-pale': 11,
+  'pilsen-bitter-tolerant-dark': 13,
+  'lager-mild-intolerant-pale': 20,
+  'lager-mild-intolerant-dark': 6,
+  'lager-mild-tolerant-pale': 19,
+  'lager-mild-tolerant-dark': 14,
+  'lager-bitter-intolerant-pale': 2,
+  'lager-bitter-intolerant-dark': 12,
+  'lager-bitter-tolerant-pale': 17,
+  'lager-bitter-tolerant-dark': 16,
+  'guiness-mild-intolerant-pale': 9,
+  'guiness-mild-intolerant-dark': 15,
+  'guiness-mild-tolerant-pale': 17,
+  'guiness-mild-tolerant-dark': 7,
+  'guiness-bitter-intolerant-pale': 17,
+  'guiness-bitter-intolerant-dark': 0,
+  'guiness-bitter-tolerant-pale': 1,
+  'guiness-bitter-tolerant-dark': 5,
 };
 
 const options = [
-  { name: 'Actor', description: '' },
-  { name: 'Animal Control Worker', description: '' },
-  { name: 'Animal Shelter Manager', description: '' },
-  { name: 'Artist', description: '' },
-  { name: 'Court Reporter', description: '' },
-  { name: 'Doctor', description: '' },
-  { name: 'Geoscientist', description: '' },
-  { name: 'Investment Banker', description: '' },
-  { name: 'Lighthouse Keeper', description: '' },
-  { name: 'Marine Ecologist', description: '' },
-  { name: 'Park Naturalist', description: '' },
-  { name: 'Pet Groomer', description: '' },
-  { name: 'Physical Therapist', description: '' },
-  { name: 'Security Guard', description: '' },
-  { name: 'Social Media Engineer', description: '' },
-  { name: 'Software Engineer', description: '' },
-  { name: 'Teacher', description: '' },
-  { name: 'Veterinary', description: '' },
-  { name: 'Veterinary Dentist', description: '' },
-  { name: 'Zookeeper', description: '' },
-  { name: 'Zoologist', description: '' },
+  { name: 'Doppelbock', description: '' },
+  { name: 'Gyümölcsös Bambi Málna', description: '' },
+  { name: 'Black Bulls Dream', description: '' },
+  { name: 'VÖRÖS CSEPEL', description: '' },
+  { name: 'TriplaX', description: '' },
+  { name: 'TRIPLAMEGGY', description: '' },
+  { name: 'Snakebite Imperial IPA', description: '' },
+  { name: 'BRETTANNIA BRUT', description: '' },
+  { name: 'Sixfingers Weisse', description: '' },
+  { name: 'Brutal Bitter', description: '' },
+  { name: 'Black Jack IPA', description: '' },
+  { name: 'Reeporter', description: '' },
+  { name: 'Gyümölcsös Áfonya', description: '' },
+  { name: 'BullDozer', description: '' },
+  { name: 'GAME OVER', description: '' },
+  { name: 'Pokerface Pale Ale', description: '' },
+  { name: 'Diesel', description: '' },
+  { name: 'REDX', description: '' },
+  { name: 'Legenda Pony', description: '' },
+  { name: 'Jokerface IPA', description: '' },
+  { name: 'James’ Brown Ale', description: '' },
 ];
 
 /* HELPER FUNCTIONS */
@@ -309,7 +309,7 @@ exports.handler = skillBuilder
     CompletedRecommendationIntent,
     HelpHandler,
     ExitHandler,
-    SessionEndedRequestHandler,    
+    SessionEndedRequestHandler,
   )
   .addErrorHandlers(ErrorHandler)
   .lambda();
