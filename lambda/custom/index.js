@@ -123,14 +123,14 @@ const CompletedRecommendationIntent = {
 
     const slotValues = getSlotValues(filledSlots);
 
-    const key = `${slotValues.typeImportance.resolved}-${slotValues.bitterness.resolved}-${slotValues.glutenTolerance.resolved}-${slotValues.colorPreference.resolved}`;
+    const key = `${slotValues.alcoholLevel.resolved}-${slotValues.bitterness.resolved}-${slotValues.fruitiness.resolved}-${slotValues.colorPreference.resolved}`;
     const occupation = options[slotsToOptionsMap[key]];
 
-    const speechOutput = `So your preferred type is ${slotValues.typeImportance.resolved
-      }. You like when the beer is ${slotValues.bitterness.resolved
+    const speechOutput = `So you wanna be ${slotValues.alcoholLevel.resolved
+      } wasted. You like when the beer is ${slotValues.bitterness.resolved
       }, you like ${slotValues.colorPreference.resolved
-      }  color and you are ${slotValues.glutenTolerance.resolved
-      } to gluten ` +
+      }  color and you are a ${slotValues.fruitiness.resolved
+      } person ` +
       `. So I recommend you the ${occupation.name}`;
 
     return handlerInput.responseBuilder
@@ -201,36 +201,36 @@ const skillBuilder = Alexa.SkillBuilders.custom();
 
 const requiredSlots = [
   'colorPreference',
-  'glutenTolerance',
+  'fruitiness',
   'bitterness',
-  'typeImportance',
+  'alcoholLevel',
 ];
 
 const slotsToOptionsMap = {
-  'pilsen-mild-intolerant-pale': 20,
-  'pilsen-mild-intolerant-dark': 8,
-  'pilsen-mild-tolerant-pale': 1,
-  'pilsen-mild-tolerant-dark': 4,
-  'pilsen-bitter-intolerant-pale': 10,
-  'pilsen-bitter-intolerant-dark': 3,
-  'pilsen-bitter-tolerant-pale': 11,
-  'pilsen-bitter-tolerant-dark': 13,
-  'lager-mild-intolerant-pale': 20,
-  'lager-mild-intolerant-dark': 6,
-  'lager-mild-tolerant-pale': 19,
-  'lager-mild-tolerant-dark': 14,
-  'lager-bitter-intolerant-pale': 2,
-  'lager-bitter-intolerant-dark': 12,
-  'lager-bitter-tolerant-pale': 17,
-  'lager-bitter-tolerant-dark': 16,
-  'guiness-mild-intolerant-pale': 9,
-  'guiness-mild-intolerant-dark': 15,
-  'guiness-mild-tolerant-pale': 17,
-  'guiness-mild-tolerant-dark': 7,
-  'guiness-bitter-intolerant-pale': 17,
-  'guiness-bitter-intolerant-dark': 0,
-  'guiness-bitter-tolerant-pale': 1,
-  'guiness-bitter-tolerant-dark': 5,
+  'lightly-mild-fruity-pale': 20,
+  'lightly-mild-fruity-dark': 8,
+  'lightly-mild-notfruity-pale': 1,
+  'lightly-mild-notfruity-dark': 4,
+  'lightly-bitter-fruity-pale': 10,
+  'lightly-bitter-fruity-dark': 3,
+  'lightly-bitter-notfruity-pale': 11,
+  'lightly-bitter-notfruity-dark': 13,
+  'medium-mild-fruity-pale': 20,
+  'medium-mild-fruity-dark': 6,
+  'medium-mild-notfruity-pale': 19,
+  'medium-mild-notfruity-dark': 14,
+  'medium-bitter-fruity-pale': 2,
+  'medium-bitter-fruity-dark': 12,
+  'medium-bitter-notfruity-pale': 17,
+  'medium-bitter-notfruity-dark': 16,
+  'very-mild-fruity-pale': 9,
+  'very-mild-fruity-dark': 15,
+  'very-mild-notfruity-pale': 17,
+  'very-mild-notfruity-dark': 7,
+  'very-bitter-fruity-pale': 17,
+  'very-bitter-fruity-dark': 0,
+  'very-bitter-notfruity-pale': 1,
+  'very-bitter-notfruity-dark': 5,
 };
 
 const options = [

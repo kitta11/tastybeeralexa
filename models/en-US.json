@@ -28,10 +28,10 @@
           "name": "RecommendationIntent",
           "slots": [
             {
-              "name": "typeImportance",
-              "type": "typeImportanceType",
+              "name": "alcoholLevel",
+              "type": "alcoholLevelType",
               "samples": [
-                "{typeImportance}"
+                "I wanna be {alcoholLevel} wasted"
               ]
             },
             {
@@ -51,11 +51,11 @@
               ]
             },
             {
-              "name": "glutenTolerance",
-              "type": "glutenToleranceType",
+              "name": "fruitiness",
+              "type": "fruitinessType",
               "samples": [
-                "I am {glutenTolerance}",
-                "{glutenTolerance}"
+                "I want a {fruitiness} one",
+                "{fruitiness}"
               ]
             },
             {
@@ -79,9 +79,9 @@
             "I want a good craftbeer",
             "recommend a beer",
             "{I_Like} {colorPreference}",
-            "I am {glutenTolerance}",
+            "I want a {fruitiness} beer",
             "{I_Want} {bitterness}",
-            "{I_Want}  {typeImportance}"
+            "{I_Want} a {alcoholLevel} one"
           ]
         }
       ],
@@ -102,27 +102,27 @@
           ]
         },
         {
-          "name": "glutenToleranceType",
+          "name": "fruitinessType",
           "values": [
             {
               "name": {
-                "value": "intolerant",
+                "value": "fruity",
                 "synonyms": [
-                  "I am intolerant",
-                  "no way",
-                  "I can't stand it",
-                  "can't stand it"
+                  "I prefer fruity",
+                  "fruity taste",
+                  "Like radler",
+                  "with fruits"
                 ]
               }
             },
             {
               "name": {
-                "value": "tolerant",
+                "value": "notfruity",
                 "synonyms": [
-                  "I am tolerant",
-                  "I like gluten",
-                  "doesn't bother me",
-                  "shrug"
+                  "Fruits and beer?",
+                  "No to fruits",
+                  "No fruity flavour",
+                  "I am a man"
                 ]
               }
             }
@@ -221,38 +221,38 @@
           ]
         },
         {
-          "name": "typeImportanceType",
+          "name": "alcoholLevelType",
           "values": [
             {
               "name": {
-                "value": "pilsen",
+                "value": "lightly",
                 "synonyms": [
-                  "pilsen",
-                  "pilsen rulz",
-                  "pilsen is my favorite",
-                  "pilsen is king"
+                  "lightly",
+                  "just a little",
+                  "it is just monday",
+                  "Just easy bro"
                 ]
               }
             },
             {
               "name": {
-                "value": "lager",
+                "value": "medium",
                 "synonyms": [
-                  "lager rulz",
-                  "lager",
-                  "lager is king",
-                  "lager is my favorite"
+                  "medium wasted",
+                  "medium",
+                  "I dont want to be too wasted",
+                  "somewhere in between"
                 ]
               }
             },
             {
               "name": {
-                "value": "guiness",
+                "value": "very",
                 "synonyms": [
-                  "guiness is my favorite",
-                  "guiness is king",
-                  "guiness",
-                  "guiness rulz"
+                  "totally",
+                  "super wasted",
+                  "kick me in the butt",
+                  "it is friday"
                 ]
               }
             }
@@ -268,12 +268,12 @@
           "prompts": {},
           "slots": [
             {
-              "name": "typeImportance",
-              "type": "typeImportanceType",
+              "name": "alcoholLevel",
+              "type": "alcoholLevelType",
               "confirmationRequired": false,
               "elicitationRequired": true,
               "prompts": {
-                "elicitation": "Elicit.Intent-RecommendationIntent.IntentSlot-typeImportance"
+                "elicitation": "Elicit.Intent-RecommendationIntent.IntentSlot-alcoholLevel"
               }
             },
             {
@@ -295,12 +295,12 @@
               }
             },
             {
-              "name": "glutenTolerance",
-              "type": "glutenToleranceType",
+              "name": "fruitiness",
+              "type": "fruitinessType",
               "confirmationRequired": false,
               "elicitationRequired": true,
               "prompts": {
-                "elicitation": "Elicit.Intent-RecommendationIntent.IntentSlot-glutenTolerance"
+                "elicitation": "Elicit.Intent-RecommendationIntent.IntentSlot-fruitiness"
               }
             },
             {
@@ -337,11 +337,11 @@
     },
     "prompts": [
       {
-        "id": "Elicit.Intent-RecommendationIntent.IntentSlot-typeImportance",
+        "id": "Elicit.Intent-RecommendationIntent.IntentSlot-alcoholLevel",
         "variations": [
           {
             "type": "PlainText",
-            "value": "What is your preferred beer type, do you like pilsen, lager or guiness?"
+            "value": "How wasted you wanna be, just lightly, somewhere in between or totally?"
           }
         ]
       },
@@ -359,16 +359,16 @@
         "variations": [
           {
             "type": "PlainText",
-            "value": "What is the color of your beer pale or dark?"
+            "value": "Do you prefer pale or dark?"
           }
         ]
       },
       {
-        "id": "Elicit.Intent-RecommendationIntent.IntentSlot-glutenTolerance",
+        "id": "Elicit.Intent-RecommendationIntent.IntentSlot-fruitiness",
         "variations": [
           {
             "type": "PlainText",
-            "value": "Are you glutent intolerant?"
+            "value": "How do you feel about fruity taste?"
           }
         ]
       }
