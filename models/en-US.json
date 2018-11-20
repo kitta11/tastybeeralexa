@@ -16,12 +16,12 @@
           "samples": []
         },
         {
-          "name": "CouchPotatoIntent",
+          "name": "SurprisemeIntent",
           "slots": [],
           "samples": [
-            "I prefer wine",
-            "I live my life without alcohol",
-            "I am an alcoholic"
+            "Surprise me",
+            "Give me a random one",
+            "I dont have time to answer"
           ]
         },
         {
@@ -31,14 +31,15 @@
               "name": "alcoholLevel",
               "type": "alcoholLevelType",
               "samples": [
-                "I wanna be {alcoholLevel} wasted"
+                "I wanna be {alcoholLevel} wasted",
+                "Lets get {alcoholLevel} drunk"
               ]
             },
             {
               "name": "bitterness",
               "type": "bitternessType",
               "samples": [
-                "{I_Want} {bitterness}",
+                "I want a {bitterness} beer",
                 "{bitterness}"
               ]
             },
@@ -46,7 +47,7 @@
               "name": "colorPreference",
               "type": "colorPreferenceType",
               "samples": [
-                "{I_Like} {colorPreference}",
+                "I like {colorPreference}",
                 "{colorPreference}"
               ]
             },
@@ -55,16 +56,9 @@
               "type": "fruitinessType",
               "samples": [
                 "I want a {fruitiness} one",
+                "I like the taste of fruits",
                 "{fruitiness}"
               ]
-            },
-            {
-              "name": "I_Like",
-              "type": "iSubjectType"
-            },
-            {
-              "name": "I_Want",
-              "type": "iSubjectType"
             },
             {
               "name": "article",
@@ -76,12 +70,12 @@
             }
           ],
           "samples": [
-            "I want a good craftbeer",
-            "recommend a beer",
-            "{I_Like} {colorPreference}",
-            "I want a {fruitiness} beer",
-            "{I_Want} {bitterness}",
-            "{I_Want} a {alcoholLevel} one"
+            "I want to drink a good craftbeer",
+            "Recommend a beer",
+            "Recommend me a {colorPreference} one",
+            "Give me some with {fruitiness} taste",
+            "I could drink a {bitterness} beer",
+            "I want to get {alcoholLevel} wasted"
           ]
         }
       ],
@@ -108,10 +102,12 @@
               "name": {
                 "value": "fruity",
                 "synonyms": [
-                  "I prefer fruity",
-                  "fruity taste",
-                  "Like radler",
-                  "with fruits"
+                  "I like fruity",
+                  "go for fruity taste",
+                  "radler like",
+                  "I like girly taste",
+                  "fruity feeling good",
+                  "fruity is fine"
                 ]
               }
             },
@@ -122,7 +118,8 @@
                   "Fruits and beer?",
                   "No to fruits",
                   "No fruity flavour",
-                  "I am a man"
+                  "I am a man",
+                  "I don't like fruits"
                 ]
               }
             }
@@ -139,46 +136,17 @@
           ]
         },
         {
-          "name": "iSubjectType",
-          "values": [
-            {
-              "id": "true",
-              "name": {
-                "value": "positive",
-                "synonyms": [
-                  "I want",
-                  "I prefer",
-                  "I really like",
-                  "I love",
-                  "I like"
-                ]
-              }
-            },
-            {
-              "id": "false",
-              "name": {
-                "value": "negative",
-                "synonyms": [
-                  "I don't want",
-                  "I really don't like",
-                  "I don't like",
-                  "I hate"
-                ]
-              }
-            }
-          ]
-        },
-        {
           "name": "bitternessType",
           "values": [
             {
               "name": {
                 "value": "bitter",
                 "synonyms": [
-                  "harsh tastes",
+                  "I like harsh tastes",
                   "i prefer bitter",
                   "i love bitter",
-                  "bitter"
+                  "bitter sounds good",
+                  "rather bitter"
                 ]
               }
             },
@@ -186,10 +154,11 @@
               "name": {
                 "value": "mild",
                 "synonyms": [
-                  "no bitter",
-                  "sweat",
-                  "soft",
-                  "mild"
+                  "rather mild",
+                  "sweat and soft",
+                  "I like mild tastes",
+                  "mild sounds good",
+                  "I prefer mild"
                 ]
               }
             }
@@ -202,9 +171,11 @@
               "name": {
                 "value": "pale",
                 "synonyms": [
-                  "yellow",
-                  "light",
-                  "pale"
+                  "yellowish",
+                  "light beer",
+                  "pale",
+                  "pale beer",
+                  "like wheat beer"
                 ]
               }
             },
@@ -214,7 +185,10 @@
                 "synonyms": [
                   "brown",
                   "black",
-                  "dark"
+                  "dark",
+                  "I prefer dark",
+                  "rather dark",
+                  "I am into dark"
                 ]
               }
             }
@@ -227,10 +201,11 @@
               "name": {
                 "value": "lightly",
                 "synonyms": [
-                  "lightly",
+                  "slightly",
                   "just a little",
                   "it is just monday",
-                  "Just easy bro"
+                  "take it easy bro",
+                  "I dont want to get wasted"
                 ]
               }
             },
@@ -302,20 +277,6 @@
               "prompts": {
                 "elicitation": "Elicit.Intent-RecommendationIntent.IntentSlot-fruitiness"
               }
-            },
-            {
-              "name": "I_Like",
-              "type": "iSubjectType",
-              "confirmationRequired": false,
-              "elicitationRequired": false,
-              "prompts": {}
-            },
-            {
-              "name": "I_Want",
-              "type": "iSubjectType",
-              "confirmationRequired": false,
-              "elicitationRequired": false,
-              "prompts": {}
             },
             {
               "name": "article",

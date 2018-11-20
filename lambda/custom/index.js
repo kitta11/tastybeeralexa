@@ -35,22 +35,22 @@ const LaunchRequestHandler = {
   },
   handle(handlerInput) {
     return handlerInput.responseBuilder
-      .speak('Welcome to our CraftBeer Decision Helper. I will recommend the best craftbeer for you. Do you want me to recommend a beer or you dont prefer beer?')
-      .reprompt('Do you want me to recommend a beer or you dont prefer beer?')
+      .speak('Welcome to our CraftBeer Decision Helper. Based on your preferences I will recommend the best craftbeer for you. Can we start or you just want me to surprise you with a random beer?')
+      .reprompt('Do you want me to recommend a beer based on your answers or you just want a surprise one?')
       .getResponse();
   },
 };
 
-const CouchPotatoIntent = {
+const SurprisemeIntent = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
 
     return request.type === 'IntentRequest'
-      && request.intent.name === 'CouchPotatoIntent';
+      && request.intent.name === 'SurprisemeIntent';
   },
   handle(handlerInput) {
     return handlerInput.responseBuilder
-      .speak('Sorry to hear that, in that case we have to say good bye')
+      .speak('Everybody loves MATAHARI. Are you satisfied with it or you want me to recommend a beer for you?')
       .getResponse();
   },
 };
@@ -304,7 +304,7 @@ function getSlotValues(filledSlots) {
 exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
-    CouchPotatoIntent,
+    SurprisemeIntent,
     InProgressRecommendationIntent,
     CompletedRecommendationIntent,
     HelpHandler,
